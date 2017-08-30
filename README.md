@@ -2,8 +2,6 @@
 
 Worked as part of a group of two people to develop a basic appointment system for medical patients to use.
 
-<br></br>
-
 **Program Features**
 * Secure connection for clients
 * Clients can create appointments at a location of their choosing

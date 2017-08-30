@@ -5,7 +5,7 @@
 Worked as part of a group of two people to develop a basic appointment system that patients could use to create/cancel appointments and message doctors.
 
 **Program Features**
--Secure connection for clients
+-Secure connection for clients\n
 -Clients can create appointments at a location of their choosing
 -Clients can get an appointment at a time and with a doctor of their choosing
 -Appointments are checked for schedule conflicts prior to creation in the database

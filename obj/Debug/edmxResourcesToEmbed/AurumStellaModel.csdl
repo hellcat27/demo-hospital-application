@@ -1,0 +1,161 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="AurumStellaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="AppointmentsTable">
+    <Key>
+      <PropertyRef Name="AppointmentID" />
+    </Key>
+    <Property Name="AppointmentID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DoctorID" Type="Int32" Nullable="false" />
+    <Property Name="PatientID" Type="Int32" Nullable="false" />
+    <Property Name="AppointmentDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="AppointmentTime" Type="Time" Nullable="false" Precision="7" />
+    <Property Name="DepartmentID" Type="Int32" Nullable="false" />
+    <Property Name="HospitalID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="DoctorTable" Relationship="Self.FK__Appointme__Docto__1FCDBCEB" FromRole="AppointmentsTable" ToRole="DoctorTable" />
+    <NavigationProperty Name="HospitalTable" Relationship="Self.FK__Appointme__Hospi__21B6055D" FromRole="AppointmentsTable" ToRole="HospitalTable" />
+    <NavigationProperty Name="PatientTable" Relationship="Self.FK__Appointme__Patie__20C1E124" FromRole="AppointmentsTable" ToRole="PatientTable" />
+  </EntityType>
+  <EntityType Name="DepartmentTable">
+    <Key>
+      <PropertyRef Name="DepartmentID" />
+    </Key>
+    <Property Name="DepartmentID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="HospitalID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="HospitalTable" Relationship="Self.FK__Departmen__Hospi__22AA2996" FromRole="DepartmentTable" ToRole="HospitalTable" />
+    <NavigationProperty Name="DoctorTables" Relationship="Self.FK__DoctorTab__Depar__239E4DCF" FromRole="DepartmentTable" ToRole="DoctorTable" />
+  </EntityType>
+  <EntityType Name="DoctorTable">
+    <Key>
+      <PropertyRef Name="DoctorID" />
+    </Key>
+    <Property Name="DoctorID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="DepartmentID" Type="Int32" Nullable="false" />
+    <Property Name="PhoneNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="AppointmentsTables" Relationship="Self.FK__Appointme__Docto__1FCDBCEB" FromRole="DoctorTable" ToRole="AppointmentsTable" />
+    <NavigationProperty Name="DepartmentTable" Relationship="Self.FK__DoctorTab__Depar__239E4DCF" FromRole="DoctorTable" ToRole="DepartmentTable" />
+  </EntityType>
+  <EntityType Name="HospitalTable">
+    <Key>
+      <PropertyRef Name="HospitalID" />
+    </Key>
+    <Property Name="HospitalID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="AppointmentsTables" Relationship="Self.FK__Appointme__Hospi__21B6055D" FromRole="HospitalTable" ToRole="AppointmentsTable" />
+    <NavigationProperty Name="DepartmentTables" Relationship="Self.FK__Departmen__Hospi__22AA2996" FromRole="HospitalTable" ToRole="DepartmentTable" />
+  </EntityType>
+  <EntityType Name="MessagesTable">
+    <Key>
+      <PropertyRef Name="MessageID" />
+    </Key>
+    <Property Name="MessageID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FROM" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="TO" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="MessageText" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PatientTable">
+    <Key>
+      <PropertyRef Name="PatientID" />
+    </Key>
+    <Property Name="PatientID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="PhoneNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="AppointmentsTables" Relationship="Self.FK__Appointme__Patie__20C1E124" FromRole="PatientTable" ToRole="AppointmentsTable" />
+  </EntityType>
+  <Association Name="FK__Appointme__Docto__1FCDBCEB">
+    <End Role="DoctorTable" Type="Self.DoctorTable" Multiplicity="1" />
+    <End Role="AppointmentsTable" Type="Self.AppointmentsTable" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DoctorTable">
+        <PropertyRef Name="DoctorID" />
+      </Principal>
+      <Dependent Role="AppointmentsTable">
+        <PropertyRef Name="DoctorID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Appointme__Hospi__21B6055D">
+    <End Role="HospitalTable" Type="Self.HospitalTable" Multiplicity="1" />
+    <End Role="AppointmentsTable" Type="Self.AppointmentsTable" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="HospitalTable">
+        <PropertyRef Name="HospitalID" />
+      </Principal>
+      <Dependent Role="AppointmentsTable">
+        <PropertyRef Name="HospitalID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Appointme__Patie__20C1E124">
+    <End Role="PatientTable" Type="Self.PatientTable" Multiplicity="1" />
+    <End Role="AppointmentsTable" Type="Self.AppointmentsTable" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PatientTable">
+        <PropertyRef Name="PatientID" />
+      </Principal>
+      <Dependent Role="AppointmentsTable">
+        <PropertyRef Name="PatientID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Departmen__Hospi__22AA2996">
+    <End Role="HospitalTable" Type="Self.HospitalTable" Multiplicity="1" />
+    <End Role="DepartmentTable" Type="Self.DepartmentTable" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="HospitalTable">
+        <PropertyRef Name="HospitalID" />
+      </Principal>
+      <Dependent Role="DepartmentTable">
+        <PropertyRef Name="HospitalID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__DoctorTab__Depar__239E4DCF">
+    <End Role="DepartmentTable" Type="Self.DepartmentTable" Multiplicity="1" />
+    <End Role="DoctorTable" Type="Self.DoctorTable" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DepartmentTable">
+        <PropertyRef Name="DepartmentID" />
+      </Principal>
+      <Dependent Role="DoctorTable">
+        <PropertyRef Name="DepartmentID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="AurumStellaEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="AppointmentsTables" EntityType="Self.AppointmentsTable" />
+    <EntitySet Name="DepartmentTables" EntityType="Self.DepartmentTable" />
+    <EntitySet Name="DoctorTables" EntityType="Self.DoctorTable" />
+    <EntitySet Name="HospitalTables" EntityType="Self.HospitalTable" />
+    <EntitySet Name="MessagesTables" EntityType="Self.MessagesTable" />
+    <EntitySet Name="PatientTables" EntityType="Self.PatientTable" />
+    <AssociationSet Name="FK__Appointme__Docto__1FCDBCEB" Association="Self.FK__Appointme__Docto__1FCDBCEB">
+      <End Role="DoctorTable" EntitySet="DoctorTables" />
+      <End Role="AppointmentsTable" EntitySet="AppointmentsTables" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Appointme__Hospi__21B6055D" Association="Self.FK__Appointme__Hospi__21B6055D">
+      <End Role="HospitalTable" EntitySet="HospitalTables" />
+      <End Role="AppointmentsTable" EntitySet="AppointmentsTables" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Appointme__Patie__20C1E124" Association="Self.FK__Appointme__Patie__20C1E124">
+      <End Role="PatientTable" EntitySet="PatientTables" />
+      <End Role="AppointmentsTable" EntitySet="AppointmentsTables" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Departmen__Hospi__22AA2996" Association="Self.FK__Departmen__Hospi__22AA2996">
+      <End Role="HospitalTable" EntitySet="HospitalTables" />
+      <End Role="DepartmentTable" EntitySet="DepartmentTables" />
+    </AssociationSet>
+    <AssociationSet Name="FK__DoctorTab__Depar__239E4DCF" Association="Self.FK__DoctorTab__Depar__239E4DCF">
+      <End Role="DepartmentTable" EntitySet="DepartmentTables" />
+      <End Role="DoctorTable" EntitySet="DoctorTables" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

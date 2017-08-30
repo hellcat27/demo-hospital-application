@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="fed3d7e744124eb89f34e27cfffde2b4" Name="Diagram1">
+        <EntityTypeShape EntityType="AurumStellaModel.AppointmentsTable" Width="1.5" PointX="7.5" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AurumStellaModel.DepartmentTable" Width="1.5" PointX="3" PointY="7" IsExpanded="true" />
+        <EntityTypeShape EntityType="AurumStellaModel.DoctorTable" Width="1.5" PointX="5.25" PointY="6.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="AurumStellaModel.HospitalTable" Width="1.5" PointX="0.75" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="AurumStellaModel.MessagesTable" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AurumStellaModel.PatientTable" Width="1.5" PointX="5.25" PointY="3" IsExpanded="true" />
+        <AssociationConnector Association="AurumStellaModel.FK__Appointme__Docto__1FCDBCEB" ManuallyRouted="false" />
+        <AssociationConnector Association="AurumStellaModel.FK__Appointme__Hospi__21B6055D" ManuallyRouted="false" />
+        <AssociationConnector Association="AurumStellaModel.FK__Appointme__Patie__20C1E124" ManuallyRouted="false" />
+        <AssociationConnector Association="AurumStellaModel.FK__Departmen__Hospi__22AA2996" ManuallyRouted="false" />
+        <AssociationConnector Association="AurumStellaModel.FK__DoctorTab__Depar__239E4DCF" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

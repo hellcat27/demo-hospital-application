@@ -1,6 +1,6 @@
 ## demo-hospital-application
 
-Worked as part of a group of two people to develop a basic appointment system for medical patients to use.
+I worked as part of a group of two people to develop a basic appointment system for medical patients to use.
 
 **Program Features**
 * Secure connection for clients
